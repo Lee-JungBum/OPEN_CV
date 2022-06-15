@@ -1,0 +1,50 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.0'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'OPEN_CV'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.apache.logging.log4j:log4j-bom:2.15.0'
+	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+	implementation 'org.springframework.boot:spring-boot-starter-validation:2.5.3'
+	implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
+
+	implementation files('C:/opencv/build/java/opencv-455.jar')
+
+	testImplementation(platform('org.junit:junit-bom:5.8.2'))
+	testImplementation('org.junit.jupiter:junit-jupiter')
+
+//	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.4.5'
+//	implementation 'io.jsonwebtoken:jjwt:0.9.1'	//JWT
+
+	implementation platform('com.amazonaws:aws-java-sdk-bom:1.11.1000')
+	implementation 'com.amazonaws:aws-java-sdk-s3'
+	implementation 'org.apache.commons:commons-exec:1.3'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
